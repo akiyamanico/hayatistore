@@ -114,17 +114,15 @@ const CartView = () => {
     }
     try {
       const token = Cookies.get('token');
-      const responseId = Cookies.get('token');
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
-      const { idcustomer } = jwt_decode(token);
       const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       console.log('response.data:', response.data);
       const idproduct = response.data.map((product) => product.id_produk)
       setIdProduct(idproduct);
       const formData = new FormData();
       formData.append('quantity', quantity);
-      await axios.post('https://hayati.fly.dev/updatequantity', { idproduct, quantity, idcustomer: idcustomer });
+      await axios.post('https://hayati.fly.dev/updatequantity', { idproduct, quantity, idcustomer: id });
       console.log('Success!');
     } catch (error) {
       console.error('Error :', error);
