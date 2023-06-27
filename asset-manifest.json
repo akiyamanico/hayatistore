@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/hayatistore/static/css/main.04d1cd50.css",
+    "main.js": "/hayatistore/static/js/main.61754646.js",
+    "static/media/CreatoDisplay-Light.otf": "/hayatistore/static/media/CreatoDisplay-Light.2c674134733d324952ba.otf",
+    "static/media/Westbourne-Regular.otf": "/hayatistore/static/media/Westbourne-Regular.365d7a8219f324bc5328.otf",
+    "index.html": "/hayatistore/index.html",
+    "main.04d1cd50.css.map": "/hayatistore/static/css/main.04d1cd50.css.map",
+    "main.61754646.js.map": "/hayatistore/static/js/main.61754646.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.04d1cd50.css",
+    "static/js/main.61754646.js"
+  ]
+}
