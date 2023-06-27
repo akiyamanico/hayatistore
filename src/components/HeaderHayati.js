@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import LogoutButton from './LogoutButton';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
 
 const HeaderHome = () => {
   const [nama, setUsername] = useState('');
