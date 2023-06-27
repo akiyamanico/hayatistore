@@ -278,7 +278,7 @@ const CartView = () => {
                 name="buktipembayaran"
                 onChange={(event) => setBukti(event.target.files[0])}
               />
-                      <p className="text-gray-700">Sebelum Melakukan Transaksi Harap melakukan Transfer ke Nomor Data Atau No Rek Yang Tersedia Di Bawah Ini</p>
+                      <p className="text-gray-700">Sebelum Melakukan Transaksi Harap Melakukan Transfer ke Nomor Data Atau No Rek Yang Tersedia Di Bawah Ini</p>
           <p className="text-gray-700">Dana : 081277467118 A/N Fi Zilalil Huda</p>
           <p className="text-gray-700">Bank Jago : 103687829082 A/N Fi Zilalil Huda</p>
               <div className="flex justify-end">
