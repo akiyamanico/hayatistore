@@ -12,8 +12,7 @@ const HayatiHome = () => {
 
   const fetchUsername = async () => {
   try {
-    const response = await axios.get('https://hayati.fly.dev/statustoken', {
-    credentials: 'include',  
+    const response = await axios.get('https://hayati.fly.dev/statustoken', { 
     withCredentials: true, // Send cookies along with the request
     });
 
