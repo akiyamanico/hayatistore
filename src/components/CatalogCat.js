@@ -43,11 +43,16 @@ const CatalogCat = () => {
   };
   const fetchUsername = async () => {
     try {
-      const response = await axios.get('https://hayati.fly.dev/statustoken', {
-        withCredentials: true, // Send cookies along with the request
-      });
+      const token = Cookies.get('token');
   
-      const { id } = response.data;
+      if (!token) {
+        console.log('Token not found');
+        return;
+      }
+  
+      // Decode the token to extract the user ID
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
       console.log('log id : ', id)
       // Use the user ID to fetch the username from the server
       const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);

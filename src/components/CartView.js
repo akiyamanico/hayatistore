@@ -32,11 +32,16 @@ const CartView = () => {
 
   const fetchUsername = async () => {
     try {
-      const response = await axios.get('https://hayati.fly.dev/statustoken', {
-        withCredentials: true,
-      });
-
-      const { id } = response.data;
+      const token = Cookies.get('token');
+  
+      if (!token) {
+        console.log('Token not found');
+        return;
+      }
+  
+      // Decode the token to extract the user ID
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
       const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
       const { nama } = userResponse.data;
       setIdUser(id);
@@ -50,10 +55,16 @@ const CartView = () => {
 
   const getCartData = async () => {
     try {
-      const responseId = await axios.get('https://hayati.fly.dev/statustoken', {
-        withCredentials: true,
-      });
-      const { id } = responseId.data;
+      const token = Cookies.get('token');
+  
+      if (!token) {
+        console.log('Token not found');
+        return;
+      }
+  
+      // Decode the token to extract the user ID
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
       const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       const updatedProducts = response.data.map((product) => ({
         ...product,
@@ -84,14 +95,13 @@ const CartView = () => {
       console.error(error);
     }
   };
+
   const InsertData = async (event) => {
     event.preventDefault();
     let id, produkNama;
     const statuspembayaran = 'Belum Dibayar';
     try {
-      const response = await axios.get('https://hayati.fly.dev/statustoken', {
-        withCredentials: true,
-      });
+      const response = Cookies.get('token');
       id = response.data.id;
       produkNama = products.map((product) => product.nama).join(', ');
     } catch (error) {
@@ -99,9 +109,7 @@ const CartView = () => {
       return;
     }
     try {
-      const responseId = await axios.get('https://hayati.fly.dev/statustoken', {
-        withCredentials: true,
-      });
+      const responseId = Cookies.get('token');
       const { id } = responseId.data;
       const idcustomer = responseId.data.id;
       const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);

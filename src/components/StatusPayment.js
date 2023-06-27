@@ -13,30 +13,43 @@ const StatusPayment = () => {
   }, []);
 
   const fetchUsername = async () => {
-  try {
-    const response = await axios.get('https://hayati.fly.dev/statustoken', {
-      withCredentials: true, // Send cookies along with the request
-    });
-
-    const { id } = response.data;
-    console.log('log id : ', id)
-    // Use the user ID to fetch the username from the server
-    const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
-    const { nama } = userResponse.data;
-    console.log('first method', nama)
-    setUsername(nama);
-    console.log('Token exists');
-  } catch (error) {
-    // Handle error
-  }
-};
+    try {
+      const token = Cookies.get('token');
+  
+      if (!token) {
+        console.log('Token not found');
+        return;
+      }
+  
+      // Decode the token to extract the user ID
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
+      console.log('log id : ', id)
+      // Use the user ID to fetch the username from the server
+      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
+      const { nama } = userResponse.data;
+      console.log('first method', nama)
+      setUsername(nama);
+      console.log('Token exists');
+    } catch (error) {
+      // Handle error
+      console.error(error);
+      console.log('Token does not exist');
+    }
+  };
 
 const getCartMember = async () => {
   try {
-    const response = await axios.get('https://hayati.fly.dev/statustoken', {
-      withCredentials: true, // Send cookies along with the request
-    });
-    const {id} = response.data;
+    const token = Cookies.get('token');
+
+    if (!token) {
+      console.log('Token not found');
+      return;
+    }
+
+    // Decode the token to extract the user ID
+    const decodedToken = jwt_decode(token);
+    const { id } = decodedToken;
     const cartMemberConst = await axios.get(`https://hayati.fly.dev/getcartmember/${id}`);
     const updatedProducts = cartMemberConst.data.map((cartMemberProof) => ({
       ...cartMemberProof,
