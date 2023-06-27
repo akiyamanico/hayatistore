@@ -1,0 +1,142 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import jwt_decode from "jwt-decode";
+import { useParams, useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
+
+const CustomerKmeans = () => {
+    const [name, setName] = useState('');
+    const [token, setToken] = useState('');
+    const [expire, setExpire] = useState('');
+    const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
+    const [selling, setSelling] = useState([]);
+    const [customer_cluster, setcustomerCluster] = useState([]);
+    const [customer_cluster_percentage, setcustomerClusterPercentage] = useState([]);
+
+    useEffect(() => {
+        refreshToken();
+        getUsers();
+        getCluster();
+        getClusterPercentage();
+        handleClick();
+    }, []);
+    const getCluster = async () => {
+        const response = await axios.get('http://localhost:5100/customerkmeans');
+        setcustomerCluster(response.data);
+    }
+    const getClusterPercentage = async () => {
+        const response = await axios.get('http://localhost:5100/customerkmeanspercentage');
+        setcustomerClusterPercentage(response.data);
+    }
+    const refreshToken = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/token');
+            setToken(response.data.accessToken);
+            const decoded = jwt_decode(response.data.accessToken);
+            setName(decoded.name);
+            setExpire(decoded.exp);
+        } catch (error) {
+            if (error.response) {
+                navigate('/');
+            }
+        }
+    }
+    const axiosJWT = axios.create();
+    axiosJWT.interceptors.request.use(async (config) => {
+        const currentDate = new Date();
+        if (expire * 1000 < currentDate.getTime()) {
+            const response = await axios.get('http://localhost:5000/token');
+            config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+            setToken(response.data.accessToken);
+            const decoded = jwt_decode(response.data.accessToken);
+            setName(decoded.name);
+            setExpire(decoded.exp);
+        }
+        return config;
+    }, (error) => {
+        return Promise.reject(error);
+    });
+
+    const getUsers = async () => {
+        const response = await axiosJWT.get('http://localhost:5000/users', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        setUsers(response.data);
+    }
+    const handleClick = async () => {
+        fetch('http://localhost:5100/clusters_new')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Failed to load data');
+                }
+                return response.json();
+            })
+            .catch((error) => {
+                console.error(error);
+                // Handle error if needed
+            });
+    };
+    return (
+        <div className="container mt-5">
+            <div className="buttons">
+                <div id="page-wrapper">
+                    <div class="row col-lg-12 w-full">
+                        <div class="panel panel-primary my-12">
+                            <div class="panel-heading text-center flex justify-center px-4">
+                                <p class="text-2xl font-bold">Data Customer</p>
+                            </div>
+                            <div class="panel-body w-full my-8">
+                                <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Customer</th>
+                                            <th>Total</th>
+                                            <th>percentage Kmeans</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {customer_cluster.map((customer_cluster, index) => (
+                                            <tr key={index}>
+                                                <td>{customer_cluster.customer_nama}</td>
+                                                <td>{customer_cluster.total}</td>
+                                                {customer_cluster_percentage.map((percentage, i) => (
+                                                    i === index && <td key={i}>{percentage.percentage}</td>
+                                                ))}
+                                            </tr>
+                                        ))}
+
+
+                                    </tbody>
+                                    <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Customer</th>
+                                                <th>Distance</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                            {customer_cluster.map((customer_cluster, index) => (
+                                                <tr key={index}>
+                                                    <td>{customer_cluster.customer_nama}</td>
+                                                    <td>{customer_cluster.distance}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                        
+                                    </table>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default CustomerKmeans
