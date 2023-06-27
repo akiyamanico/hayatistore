@@ -4,7 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import jwt_decode from 'jwt-decode';
 
 const CatalogList = () => {
   const [nama, setUsername] = useState([]);
