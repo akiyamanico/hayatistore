@@ -14,7 +14,23 @@ const LoginMember = () => {
           navigate('/');
         });
       };
- 
+      const getCookieValue = name => {
+        const cookies = document.cookie.split(';');
+      
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith(`${name}=`)) {
+            return cookie.substring(name.length + 1);
+          }
+        }
+      
+        return undefined;
+      };
+      
+      // Example usage to get the token from the cookie
+      const token = getCookieValue('token');
+      console.log('Token:', token);
+      
     return (
         
         <section className="flex grow h-128 justify-center py-16 px-4 sm:px-8 lg:px-8">
