@@ -7,8 +7,7 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     // Clear the authentication token from cookies
-    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    Cookies.remove('token');
+    Cookies.remove('token', { path: '/' });
     
     // Perform additional cleanup or state reset if needed
 
