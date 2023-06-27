@@ -26,7 +26,7 @@ const ReportCustomer = () => {
     }
     const refreshToken = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/token');
+            const response = await axios.get('https://sequelizehayati.fly.dev/token');
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
             setName(decoded.name);
@@ -41,7 +41,7 @@ const ReportCustomer = () => {
     axiosJWT.interceptors.request.use(async (config) => {
         const currentDate = new Date();
         if (expire * 1000 < currentDate.getTime()) {
-            const response = await axios.get('http://localhost:5000/token');
+            const response = await axios.get('https://sequelizehayati.fly.dev/token');
             config.headers.Authorization = `Bearer ${response.data.accessToken}`;
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
@@ -54,7 +54,7 @@ const ReportCustomer = () => {
     });
 
     const getUsers = async () => {
-        const response = await axiosJWT.get('http://localhost:5000/users', {
+        const response = await axiosJWT.get('https://sequelizehayati.fly.dev/users', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
