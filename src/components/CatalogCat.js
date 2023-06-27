@@ -3,6 +3,8 @@ import jwt_decode from "jwt-decode";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
 
 const CatalogCat = () => {
   const [nama, setUsername] = useState([]);
