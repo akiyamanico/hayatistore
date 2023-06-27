@@ -68,7 +68,6 @@ const Dashboard = () => {
             setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
-                navigate('/');
             }
         }
     }

@@ -42,7 +42,6 @@ const Kmeans = () => {
             setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
-                navigate('/');
             }
         }
     }
