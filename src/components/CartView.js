@@ -113,9 +113,6 @@ const CartView = () => {
       return;
     }
     try {
-      const token = Cookies.get('token');
-      const decodedToken = jwt_decode(token);
-      const { id } = decodedToken;
       const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       console.log('response.data:', response.data);
       const idproduct = response.data.map((product) => product.id_produk)
