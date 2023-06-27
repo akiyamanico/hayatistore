@@ -1,0 +1,15 @@
+# fly.toml app configuration file generated for nameless-leaf-3868 on 2023-06-27T18:50:13+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "nameless-leaf-3868"
+primary_region = "sin"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]

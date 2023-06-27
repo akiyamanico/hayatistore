@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.2.16",
     "autoprefixer": "^10.4.13",
     "gh-pages": "^5.0.0",
     "postcss": "^8.4.19",
