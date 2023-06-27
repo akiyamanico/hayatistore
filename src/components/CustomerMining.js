@@ -7,7 +7,7 @@ function CustomerMining({ customerName }) {
       getCust();
     }, []);
     const getCust = async () => {
-        const response = await axios.get('http://localhost:5100/clusters');
+        const response = await axios.get('https://hayati.fly.dev/clusters');
         setCustomerData(response.data);
         console.log(response.data)
     }

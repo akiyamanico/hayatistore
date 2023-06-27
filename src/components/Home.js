@@ -12,14 +12,14 @@ const HayatiHome = () => {
 
   const fetchUsername = async () => {
   try {
-    const response = await axios.get('http://localhost:5100/statustoken', {
+    const response = await axios.get('https://hayati.fly.dev/statustoken', {
       withCredentials: true, // Send cookies along with the request
     });
 
     const { id } = response.data;
     console.log('log id : ', id)
     // Use the user ID to fetch the username from the server
-    const userResponse = await axios.get(`http://localhost:5100/usermember/${id}`);
+    const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
     const { nama } = userResponse.data;
     console.log('first method', nama)
     setUsername(nama);

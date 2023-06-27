@@ -19,16 +19,16 @@ const Dashboard = () => {
         getProducts();
     }, []);
     const getProducts = async () => {
-        const response = await axios.get('http://localhost:5100/produk');
+        const response = await axios.get('https://hayati.fly.dev/produk');
         setProduct(response.data);
     }
     const deleteProduct = async (id) => {
         try {
           await Promise.all([
-            axios.get(`http://localhost:5100/deleteproduk/${id}`),
-            axios.get(`http://localhost:5100/deletemining/${id}`),
-            axios.get(`http://localhost:5100/deletedesc/${id}`),
-            axios.get(`http://localhost:5100/deletepenjualan/${id}`),
+            axios.get(`https://hayati.fly.dev/deleteproduk/${id}`),
+            axios.get(`https://hayati.fly.dev/deletemining/${id}`),
+            axios.get(`https://hayati.fly.dev/deletedesc/${id}`),
+            axios.get(`https://hayati.fly.dev/deletepenjualan/${id}`),
           ]);
 
         } catch (error) {

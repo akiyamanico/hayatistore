@@ -14,7 +14,7 @@ const CatalogList = () => {
     fetchCat();
     fetchUsername();
     axios
-      .get('http://localhost:5100/produkpicture')
+      .get('https://hayati.fly.dev/produkpicture')
       .then((response) => {
         // Convert the picture filenames to JPEG URLs
         const updatedProducts = response.data.map((product) => {
@@ -31,7 +31,7 @@ const CatalogList = () => {
       });
   }, []);
 
-  const urljpg = 'http://localhost:5100/uploads/';
+  const urljpg = 'https://hayati.fly.dev/uploads/';
   const convertToJPEG = (url) => {
     const extension = url.slice(-3); // Get the file extension
     if (extension === 'jpg' || extension === 'jpeg') {
@@ -43,14 +43,14 @@ const CatalogList = () => {
   };
   const fetchUsername = async () => {
     try {
-      const response = await axios.get('http://localhost:5100/statustoken', {
+      const response = await axios.get('https://hayati.fly.dev/statustoken', {
         withCredentials: true, // Send cookies along with the request
       });
   
       const { id } = response.data;
       console.log('log id : ', id)
       // Use the user ID to fetch the username from the server
-      const userResponse = await axios.get(`http://localhost:5100/usermember/${id}`);
+      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
       const { nama } = userResponse.data;
       console.log('first method', nama)
       setUsername(nama);
@@ -63,7 +63,7 @@ const CatalogList = () => {
   };
 
   const fetchCat = async () => {
-    const response = await axios.get('http://localhost:5100/categorylist');
+    const response = await axios.get('https://hayati.fly.dev/categorylist');
     setCat(response.data);
     console.log('category:', category)
   };
@@ -71,7 +71,7 @@ const CatalogList = () => {
       const handleLogout = async () => {
         try {
           // Send a request to the server to perform the logout
-          await axios.post('http://localhost:5100/logout');
+          await axios.post('https://hayati.fly.dev/logout');
           
           // Redirect the user to the desired page after logout
           navigate('/');

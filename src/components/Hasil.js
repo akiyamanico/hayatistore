@@ -25,7 +25,7 @@ const Dashboard = () => {
         getResultKurangLaku();
     }, []);
     const getProducts = async () => {
-        const response = await axios.get('http://localhost:5100/produk');
+        const response = await axios.get('https://hayati.fly.dev/produk');
         setProduct(response.data);
     }
     const deleteProduct = async (id_produk) => {
@@ -35,21 +35,21 @@ const Dashboard = () => {
     //create componentdidmout for apijson.php
     const [progressData, setProgress] = useState([]);
     const getProgress = async () => {
-        const response = await axios.get('http://localhost:5100/labelPercentage', {
+        const response = await axios.get('https://hayati.fly.dev/labelPercentage', {
             withCredentials: false
         });
         setProgress(response.data);
     }
     const [resultDataLaku, setResultLaku] = useState([]);
     const getResultLaku = async () => {
-        const response = await axios.get('http://localhost:5100/manybuyersdata', {
+        const response = await axios.get('https://hayati.fly.dev/manybuyersdata', {
             withCredentials: false
         });
         setResultLaku(response.data);
     }
     const [resultDataKurangLaku, setResultKurangLaku] = useState([]);
     const getResultKurangLaku = async () => {
-        const response = await axios.get('http://localhost:5100/fewbuyersdata', {
+        const response = await axios.get('https://hayati.fly.dev/fewbuyersdata', {
             withCredentials: false
         });
         setResultKurangLaku(response.data);

@@ -25,7 +25,7 @@ const KmeansJS = () => {
 
     const getSelling = async () => {
         try {
-            const response = await axios.get('http://localhost:5100/kmeans_test');
+            const response = await axios.get('https://hayati.fly.dev/kmeans_test');
             const { distances, centroidHistory } = response.data;
             setDistances(distances);
             setCentroidHistory(centroidHistory);

@@ -21,7 +21,7 @@ const ReportCustomer = () => {
         getCust();
     }, []);
     const getCust = async () => {
-        const response = await axios.get('http://localhost:5100/customerhistory');
+        const response = await axios.get('https://hayati.fly.dev/customerhistory');
         setCustomerHistory(response.data);
     }
     const refreshToken = async () => {

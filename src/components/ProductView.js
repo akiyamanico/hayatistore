@@ -12,7 +12,7 @@ const ProductView = () => {
   useEffect(() => {
     fetchUsername();
     axios
-      .get(`http://localhost:5100/produkpictureid/${id_produk}`)
+      .get(`https://hayati.fly.dev/produkpictureid/${id_produk}`)
       .then((response) => {
         // Convert the picture filenames to JPEG URLs
         const updatedProducts = response.data.map((product) => {
@@ -29,7 +29,7 @@ const ProductView = () => {
       });
 getDesc();
   }, []);
-  const urljpg = 'http://localhost:5100/uploads/';
+  const urljpg = 'https://hayati.fly.dev/uploads/';
   const convertToJPEG = (url) => {
     const extension = url.slice(-3); // Get the file extension
     if (extension === 'jpg' || extension === 'jpeg') {
@@ -41,7 +41,7 @@ getDesc();
   };
   const getDesc = async () => {
     axios
-    .get(`http://localhost:5100/productdesc/${id_produk}`)
+    .get(`https://hayati.fly.dev/productdesc/${id_produk}`)
     .then((response) => {
       // Convert the picture filenames to JPEG URLs
       const updatedProducts = response.data.map((productdesc) => {
@@ -60,12 +60,12 @@ return { ...productdesc, pictureUrlJPEG };
 
   const fetchUsername = async () => {
     try {
-      const response = await axios.get('http://localhost:5100/statustoken', {
+      const response = await axios.get('https://hayati.fly.dev/statustoken', {
         withCredentials: true, // Send cookies along with the request
       });
 
       const { id } = response.data;
-      const userResponse = await axios.get(`http://localhost:5100/usermember/${id}`);
+      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
       const { name } = userResponse.data;
       setUsername(name);
     } catch (error) {
@@ -76,11 +76,11 @@ return { ...productdesc, pictureUrlJPEG };
 
   const submitCart = async () => {
     try {
-      const response = await axios.get('http://localhost:5100/statustoken', {
+      const response = await axios.get('https://hayati.fly.dev/statustoken', {
         withCredentials: true, // Send cookies along with the request
       });
       const { id } = response.data;
-      await axios.post('http://localhost:5100/insertDataCart', {
+      await axios.post('https://hayati.fly.dev/insertDataCart', {
         idcust: id,
         idproduct: id_produk,
       });

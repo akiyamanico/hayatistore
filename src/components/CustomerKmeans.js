@@ -24,11 +24,11 @@ const CustomerKmeans = () => {
         handleClick();
     }, []);
     const getCluster = async () => {
-        const response = await axios.get('http://localhost:5100/customerkmeans');
+        const response = await axios.get('https://hayati.fly.dev/customerkmeans');
         setcustomerCluster(response.data);
     }
     const getClusterPercentage = async () => {
-        const response = await axios.get('http://localhost:5100/customerkmeanspercentage');
+        const response = await axios.get('https://hayati.fly.dev/customerkmeanspercentage');
         setcustomerClusterPercentage(response.data);
     }
     const refreshToken = async () => {
@@ -69,7 +69,7 @@ const CustomerKmeans = () => {
         setUsers(response.data);
     }
     const handleClick = async () => {
-        fetch('http://localhost:5100/clusters_new')
+        fetch('https://hayati.fly.dev/clusters_new')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Failed to load data');

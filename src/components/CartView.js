@@ -32,12 +32,12 @@ const CartView = () => {
 
   const fetchUsername = async () => {
     try {
-      const response = await axios.get('http://localhost:5100/statustoken', {
+      const response = await axios.get('https://hayati.fly.dev/statustoken', {
         withCredentials: true,
       });
 
       const { id } = response.data;
-      const userResponse = await axios.get(`http://localhost:5100/usermember/${id}`);
+      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
       const { nama } = userResponse.data;
       setIdUser(id);
       setUsername(nama);
@@ -50,11 +50,11 @@ const CartView = () => {
 
   const getCartData = async () => {
     try {
-      const responseId = await axios.get('http://localhost:5100/statustoken', {
+      const responseId = await axios.get('https://hayati.fly.dev/statustoken', {
         withCredentials: true,
       });
       const { id } = responseId.data;
-      const response = await axios.get(`http://localhost:5100/cartlist/${id}`);
+      const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       const updatedProducts = response.data.map((product) => ({
         ...product,
         pictureUrlJPEG: convertToJPEG(`/uploads/${product.picture}`),
@@ -78,7 +78,7 @@ const CartView = () => {
 
   const deleteData = async (id_produk) => {
     try {
-      await axios.get(`http://localhost:5100/removecart/?idcust=${idUser}&idproduk=${id_produk}`);
+      await axios.get(`https://hayati.fly.dev/removecart/?idcust=${idUser}&idproduk=${id_produk}`);
       getCartData();
     } catch (error) {
       console.error(error);
@@ -89,7 +89,7 @@ const CartView = () => {
     let id, produkNama;
     const statuspembayaran = 'Belum Dibayar';
     try {
-      const response = await axios.get('http://localhost:5100/statustoken', {
+      const response = await axios.get('https://hayati.fly.dev/statustoken', {
         withCredentials: true,
       });
       id = response.data.id;
@@ -99,18 +99,18 @@ const CartView = () => {
       return;
     }
     try {
-      const responseId = await axios.get('http://localhost:5100/statustoken', {
+      const responseId = await axios.get('https://hayati.fly.dev/statustoken', {
         withCredentials: true,
       });
       const { id } = responseId.data;
       const idcustomer = responseId.data.id;
-      const response = await axios.get(`http://localhost:5100/cartlist/${id}`);
+      const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       console.log('response.data:', response.data);
       const idproduct = response.data.map((product) => product.id_produk)
       setIdProduct(idproduct);
       const formData = new FormData();
       formData.append('quantity', quantity);
-      await axios.post('http://localhost:5100/updatequantity', { idproduct, quantity, idcustomer: idcustomer });
+      await axios.post('https://hayati.fly.dev/updatequantity', { idproduct, quantity, idcustomer: idcustomer });
       console.log('Success!');
     } catch (error) {
       console.error('Error :', error);
@@ -125,7 +125,7 @@ const CartView = () => {
       formData.append('quantity', quantity);
       formData.append('totalbayar', calculateSubtotal());
       formData.append('buktipembayaran', buktipembayaran);
-      await axios.post('http://localhost:5100/cart_insert', formData);
+      await axios.post('https://hayati.fly.dev/cart_insert', formData);
     } catch (error) {
       if (error.response) {
         console.error(error.response.data.msg);
@@ -162,7 +162,7 @@ const CartView = () => {
     return total;
   };
 
-  const urljpg = 'http://localhost:5100/uploads/';
+  const urljpg = 'https://hayati.fly.dev/uploads/';
 
   return (
     <div className="h-screen bg-gray-100 pt-20">

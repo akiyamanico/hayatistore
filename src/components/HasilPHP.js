@@ -25,7 +25,7 @@ const HasilPHP = () => {
         getResultKurangLaku();
     }, []);
     const getProducts = async () => {
-        const response = await axios.get('http://localhost:5100/produk');
+        const response = await axios.get('https://hayati.fly.dev/produk');
         setProduct(response.data);
     }
     const deleteProduct = async (id_produk) => {

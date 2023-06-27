@@ -9,7 +9,7 @@ const LoginMember = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        axios.post('http://localhost:5100/loginmember', { email, password }).then(response => {
+        axios.post('https://hayati.fly.dev/loginmember', { email, password }).then(response => {
           navigate('/');
         });
       };

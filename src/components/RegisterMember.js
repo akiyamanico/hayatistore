@@ -14,7 +14,7 @@ const Register = () => {
           email: email,
           password: password
         };
-        axios.post('http://localhost:5100/registerusers', data)
+        axios.post('https://hayati.fly.dev/registerusers', data)
           .then(response => {
             console.log(response);
             Navigate('/');

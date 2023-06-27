@@ -20,7 +20,7 @@ const CheckPaymentCustomer = () => {
     }, []);
     const getCustData = async () => {
         axios
-        .get('http://localhost:5100/cartcustomer')
+        .get('https://hayati.fly.dev/cartcustomer')
         .then((response) => {
           // Convert the picture filenames to JPEG URLs
           const updatedProducts = response.data.map((cartcustomer) => {
@@ -36,7 +36,7 @@ const CheckPaymentCustomer = () => {
           console.error(error);
         });
     }
-    const urljpg = 'http://localhost:5100/uploads/';
+    const urljpg = 'https://hayati.fly.dev/uploads/';
     const convertToJPEG = (url) => {
       const extension = url.slice(-3); // Get the file extension
       if (extension === 'jpg' || extension === 'jpeg') {
@@ -87,7 +87,7 @@ const CheckPaymentCustomer = () => {
         setUsers(response.data);
     }
     const confirmData = async (id) => {
-        axios.get(`http://localhost:5100/updatestatuscustomer/${id}`)
+        axios.get(`https://hayati.fly.dev/updatestatuscustomer/${id}`)
         getCustData();
     }
 

@@ -14,14 +14,14 @@ const StatusPayment = () => {
 
   const fetchUsername = async () => {
   try {
-    const response = await axios.get('http://localhost:5100/statustoken', {
+    const response = await axios.get('https://hayati.fly.dev/statustoken', {
       withCredentials: true, // Send cookies along with the request
     });
 
     const { id } = response.data;
     console.log('log id : ', id)
     // Use the user ID to fetch the username from the server
-    const userResponse = await axios.get(`http://localhost:5100/usermember/${id}`);
+    const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
     const { nama } = userResponse.data;
     console.log('first method', nama)
     setUsername(nama);
@@ -33,11 +33,11 @@ const StatusPayment = () => {
 
 const getCartMember = async () => {
   try {
-    const response = await axios.get('http://localhost:5100/statustoken', {
+    const response = await axios.get('https://hayati.fly.dev/statustoken', {
       withCredentials: true, // Send cookies along with the request
     });
     const {id} = response.data;
-    const cartMemberConst = await axios.get(`http://localhost:5100/getcartmember/${id}`);
+    const cartMemberConst = await axios.get(`https://hayati.fly.dev/getcartmember/${id}`);
     const updatedProducts = cartMemberConst.data.map((cartMemberProof) => ({
       ...cartMemberProof,
       pictureUrlJPEG: convertToJPEG(`/uploads/${cartMemberProof.buktipembayaran}`),
@@ -58,7 +58,7 @@ const convertToJPEG = (url) => {
   }
 };
 
-const urljpg = 'http://localhost:5100/uploads/';
+const urljpg = 'https://hayati.fly.dev/uploads/';
     return (
       <div class="h-100 w-full flex flex-grow items-center justify-center bg-teal-lightest font-creato">
       <div class="rounded shadow p-6 bg-gray-50">

@@ -22,14 +22,14 @@ const Kmeans = () => {
         getSelling();
     }, []);
     const getSelling = async () => {
-        const response = await axios.get('http://localhost:5100/penjualan');
-        const response2 = await axios.get('http://localhost:5100/produk');
+        const response = await axios.get('https://hayati.fly.dev/penjualan');
+        const response2 = await axios.get('https://hayati.fly.dev/produk');
         setSelling(response.data);
         setProduct(response2.data);
         
     }
     const getDataResult = async () => {
-        const response = await axios.get('http://localhost:5100/proses_mining_all');
+        const response = await axios.get('https://hayati.fly.dev/proses_mining_all');
         setData(response.data);
     }
     const refreshToken = async () => {
