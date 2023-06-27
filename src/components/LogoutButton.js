@@ -7,8 +7,9 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     // Clear the authentication token from cookies
+    document.cookie = `token=`;
     Cookies.remove('token');
-
+    
     // Perform additional cleanup or state reset if needed
 
     // Redirect the user to the desired page after logout
