@@ -60,11 +60,16 @@ return { ...productdesc, pictureUrlJPEG };
 
   const fetchUsername = async () => {
     try {
-      const response = await axios.get('https://hayati.fly.dev/statustoken', {
-        withCredentials: true, // Send cookies along with the request
-      });
-
-      const { id } = response.data;
+      const token = Cookies.get('token');
+  
+      if (!token) {
+        console.log('Token not found');
+        return;
+      }
+  
+      // Decode the token to extract the user ID
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
       const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
       const { name } = userResponse.data;
       setUsername(name);
