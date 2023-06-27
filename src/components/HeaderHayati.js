@@ -16,6 +16,9 @@ const HeaderHome = () => {
   const fetchUsername = async () => {
   try {
     const response = await axios.get('https://hayati.fly.dev/statustoken', {
+      headers: {
+        Authorization: `Bearer ${token}` // Include the token in the 'Authorization' header
+      },
       credentials: 'include',
       withCredentials: true, // Send cookies along with the request
     });
