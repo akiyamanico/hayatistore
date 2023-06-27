@@ -103,6 +103,7 @@ const CartView = () => {
     let id, produkNama;
     const statuspembayaran = 'Belum Dibayar';
     try {
+      const token = Cookies.get('token');
       const decodedToken = jwt_decode(token);
       id = decodedToken
       console.log('id berbelanja', id);
@@ -112,10 +113,11 @@ const CartView = () => {
       return;
     }
     try {
+      const token = Cookies.get('token');
       const responseId = Cookies.get('token');
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
-      const idcustomer = responseId.data.id;
+      const idcustomer = decodedToken;
       const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       console.log('response.data:', response.data);
       const idproduct = response.data.map((product) => product.id_produk)
