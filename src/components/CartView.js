@@ -100,12 +100,12 @@ const CartView = () => {
 
   const InsertData = async (event) => {
     event.preventDefault();
-    let id, produkNama;
+    let produkNama;
     const statuspembayaran = 'Belum Dibayar';
     try {
       const token = Cookies.get('token');
       const decodedToken = jwt_decode(token);
-      id = decodedToken
+      const { id } = decodedToken;
       console.log('id berbelanja', id);
       produkNama = products.map((product) => product.nama).join(', ');
     } catch (error) {
@@ -113,18 +113,24 @@ const CartView = () => {
       return;
     }
     try {
+      const token = Cookies.get('token');
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
       const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       console.log('response.data:', response.data);
-      const idproduct = response.data.map((product) => product.id_produk)
-      setIdProduct(idproduct);
+      const  idproductres = response.data.map((product) => product.id_produk)
+      setIdProduct(idproductres);
       const formData = new FormData();
       formData.append('quantity', quantity);
-      await axios.post('https://hayati.fly.dev/updatequantity', { idproduct, quantity, idcustomer: id });
+      await axios.post('https://hayati.fly.dev/updatequantity', { idproductres, quantity, idcustomer: id });
       console.log('Success!');
     } catch (error) {
       console.error('Error :', error);
     }
     try {
+      const token = Cookies.get('token');
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
       const formData = new FormData();
       formData.append('id', id);
       formData.append('nama', namapenerima);
