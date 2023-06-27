@@ -103,8 +103,8 @@ const CartView = () => {
     let id, produkNama;
     const statuspembayaran = 'Belum Dibayar';
     try {
-      const response = Cookies.get('token');
-      id = response.data.id;
+      id = Cookies.get('token');
+      console.log('id berbelanja', id);
       produkNama = products.map((product) => product.nama).join(', ');
     } catch (error) {
       console.error(error);
