@@ -217,26 +217,13 @@ export default function NavigationBar() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="http://localhost:8000/diagram.php"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Lihat Diagram (PHP Backend)
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
                   href="http://localhost:8000/mining.php"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                 Lihat Centroid (PHP Backend)
+                 Lihat Centroid 
                 </a>
               )}
             </Menu.Item>
@@ -249,7 +236,7 @@ export default function NavigationBar() {
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Lakukan Algoritma K-Means (PHP Backend)
+                  Lakukan Algoritma K-Means 
                 </a>
               )}
             </Menu.Item>
@@ -262,36 +249,10 @@ export default function NavigationBar() {
                       'block w-full px-4 py-2 text-left text-sm'
                     )}
                   >
-                    Lihat Hasil K-Means (PHP Backend)
+                    Lihat Hasil K-Means 
                   </a>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    href="/KmeansJS"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
-                    )}
-                  >
-                    Lihat Hasil K-Means (NodeJS Backend)
-                  </a>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="/Hasil"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  Lihat Perbedaan Produk Diminati
-                </a>
-              )}
-            </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <a
@@ -301,7 +262,7 @@ export default function NavigationBar() {
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Lihat Perbedaan Produk Diminati (PHP Backend)
+                  Lihat Perbedaan Produk Diminati
                 </a>
               )}
             </Menu.Item>
