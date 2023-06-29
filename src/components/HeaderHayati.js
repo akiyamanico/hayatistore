@@ -42,15 +42,12 @@ const HeaderHome = () => {
 };
     const handleLogout = async () => {
       try {
-        // Send a request to the server to perform the logout
         await axios.post('https://hayati.fly.dev/logout');
-        
-        // Redirect the user to the desired page after logout
+        Cookies.remove('token', { path: '/' });
         navigate('/');
         setUsername();
         setNama([]);
       } catch (error) {
-        // Handle error if needed
         console.error(error);
       }
     };
