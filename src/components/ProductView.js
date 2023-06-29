@@ -83,10 +83,16 @@ return { ...productdesc, pictureUrlJPEG };
 
   const submitCart = async () => {
     try {
-      const response = await axios.get('https://hayati.fly.dev/statustoken', {
-        withCredentials: true, // Send cookies along with the request
-      });
-      const { id } = response.data;
+      const token = Cookies.get('token');
+  
+      if (!token) {
+        console.log('Token not found');
+        return;
+      }
+  
+      // Decode the token to extract the user ID
+      const decodedToken = jwt_decode(token);
+      const { id } = decodedToken;
       await axios.post('https://hayati.fly.dev/insertDataCart', {
         idcust: id,
         idproduct: id_produk,
