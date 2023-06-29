@@ -217,7 +217,7 @@ export default function NavigationBar() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="http://localhost/api/diagram.php"
+                  href="http://localhost:8000/diagram.php"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -230,7 +230,7 @@ export default function NavigationBar() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="http://localhost/api/mining.php"
+                  href="http://localhost:8000/mining.php"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -243,7 +243,7 @@ export default function NavigationBar() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="http://localhost/api/proses_mining.php"
+                  href="http://localhost:8000/proses_mining.php"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
