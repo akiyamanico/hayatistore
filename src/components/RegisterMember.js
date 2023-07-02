@@ -16,8 +16,8 @@ const Register = () => {
         };
         axios.post('https://hayati.fly.dev/registerusers', data)
           .then(response => {
+            setShowSuccessPopup(true);
             console.log(response);
-            Navigate('/');
             
           })
           .catch(error => {
@@ -30,6 +30,17 @@ const Register = () => {
         <section className="flex grow h-128 justify-center py-16 px-4 sm:px-8 lg:px-8">
             <div className="rounded-md appearance-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm">
             <div className="max-w-md w-full space-y-8">
+            {showSuccessPopup && (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75">
+      <div className="bg-white rounded-md p-8">
+        <h2 className="text-xl font-bold mb-4">Registrasi Sukses!!</h2>
+        <div className='items-center justify-center'>
+        <p>Selamat Datang Di Hayati Store!</p>
+        <a href='/login'><p>Tekan Disini Untuk Login</p></a>
+        </div>
+      </div>
+    </div>
+            )}
                     <div className="columns is-centered">
                         <div className="column is-4-desktop">
                             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
