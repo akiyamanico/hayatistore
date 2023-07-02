@@ -7,6 +7,7 @@ const Register = () => {
     const [email, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = {
