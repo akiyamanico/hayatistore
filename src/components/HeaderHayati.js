@@ -47,6 +47,7 @@ const HeaderHome = () => {
         navigate('/');
         setUsername();
         setNama([]);
+        Cookies.remove('token', { path: '/' });
       } catch (error) {
         console.error(error);
       }
