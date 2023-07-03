@@ -93,7 +93,7 @@ const Dashboard = () => {
                         <div class="panel panel-primary my-12">
                             <div class="panel-heading flex align-middle justify-between px-4">
                                     <p class="text-xl font-bold">Data Produk</p>
-                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><a href="http://localhost/api/proses_mining.php">Lakukan Clustering K-Means</a></button>
+                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><a href="https://skeptic-electrician.000webhostapp.com/proses_mining.php">Lakukan Clustering K-Means</a></button>
                                 </div>
                                 <div class="panel-body w-full my-8">
                                     <table width="100%" class="table table-bordered table-hover" id="dataTables-example">
