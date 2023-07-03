@@ -37,14 +37,14 @@ const TambahData = () => {
             formData.append('harga', harga);
             formData.append('picture', picture);
             formData.append('desc', desc);
-            await axios.post('http://localhost:5100/produk_insert_picture', formData);
-            await axios.post('http://localhost:5100/mining_insert', {
+            await axios.post('https://hayati.fly.dev/produk_insert_picture', formData);
+            await axios.post('https://hayati.fly.dev/mining_insert', {
                 id_produk: id_produk
             });
-            await axios.post('http://localhost:5100/penjualan_insert', {
+            await axios.post('https://hayati.fly.dev/penjualan_insert', {
                 id_produk: id_produk
             });
-            await axios.post('http://localhost:5100/desc_insert', {
+            await axios.post('https://hayati.fly.dev/desc_insert', {
                 id_produk: id_produk,
                 desc: desc
             });
