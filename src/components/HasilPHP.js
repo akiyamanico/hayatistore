@@ -35,21 +35,21 @@ const HasilPHP = () => {
     //create componentdidmout for apijson.php
     const [progressData, setProgress] = useState([]);
     const getProgress = async () => {
-        const response = await axios.get('http://localhost:8000/apijson.php', {
+        const response = await axios.get('https://skeptic-electrician.000webhostapp.com/apijson.php', {
             withCredentials: false
         });
         setProgress(response.data);
     }
     const [resultDataLaku, setResultLaku] = useState([]);
     const getResultLaku = async () => {
-        const response = await axios.get('http://localhost:8000/apijsonhasil.php', {
+        const response = await axios.get('https://skeptic-electrician.000webhostapp.com/apijsonhasil.php', {
             withCredentials: false
         });
         setResultLaku(response.data);
     }
     const [resultDataKurangLaku, setResultKurangLaku] = useState([]);
     const getResultKurangLaku = async () => {
-        const response = await axios.get('http://localhost:8000/apijsonhasilkurang.php', {
+        const response = await axios.get('https://skeptic-electrician.000webhostapp.com/apijsonhasilkurang.php', {
             withCredentials: false
         });
         setResultKurangLaku(response.data);
