@@ -1,5 +1,7 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Dashboard from "./components/Dashboard";
+import DiskonProduk from "./components/DiskonProduk";
+import DiskonCust from "./components/DiskonCust";
 import LoginAdmin from "./components/LoginAdmin";
 import Register from "./components/Register";
 import NavigationBar from "./components/Header";
@@ -58,6 +60,10 @@ function App() {
         <Route path="/register" element={<Register />}>
         </Route>
         <Route path="/dashboard" element={<><NavigationBar/><Dashboard/></>}>
+        </Route>
+        <Route path="/DiskonProduk" element={<><NavigationBar/><DiskonProduk/></>}>
+        </Route>
+        <Route path="/DiskonCust" element={<><NavigationBar/><DiskonCust/></>}>
         </Route>
         <Route path="/CustomerMining" element={<><NavigationBar/><CustomerMining/></>}>
         </Route>

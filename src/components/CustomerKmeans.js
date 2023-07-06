@@ -108,24 +108,41 @@ const CustomerKmeans = () => {
                                                 ))}
                                             </tr>
                                         ))}
-
-
                                     </tbody>
                                     <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>Nama Customer</th>
                                                 <th>Distance</th>
+                                                <th>Aksi</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
-                                            {customer_cluster.map((customer_cluster, index) => (
-                                                <tr key={index}>
-                                                    <td>{customer_cluster.customer_nama}</td>
-                                                    <td>{customer_cluster.distance}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
+  {customer_cluster.map((customer_cluster, index) => (
+    <tr key={index}>
+      <td>{customer_cluster.customer_nama}</td>
+      <td>{customer_cluster.distance}</td>
+      {customer_cluster_percentage.map((percentage, i) => {
+        if (i === index && percentage.percentage > 70) {
+            console.log(customer_cluster);
+          return (
+            <React.Fragment key={i}>
+              <td>{percentage.percentage}</td>
+              <td>
+                <button onClick={() => addDiscount(customer_cluster.id)} className="button is-small is-danger">
+                  Masukan Ke Cust Diskon
+                </button>
+              </td>
+            </React.Fragment>
+          );
+        } else {
+          return null;
+        }
+      })}
+    </tr>
+  ))}
+</tbody>
+
                                         
                                     </table>
                                 </table>

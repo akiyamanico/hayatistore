@@ -20,7 +20,7 @@ const EditData = () => {
           setNama(data.nama);
           setHarga(data.harga); 
         };
-const API_URL = 'http://localhost:5100';
+const API_URL = 'https://sequelizehayati.fly.dev/';
 const navigate = useNavigate();
 const updateData = async (id_produk, nama, id_kategori, stok, harga) => {
   try {

@@ -106,6 +106,14 @@ const HasilPHP = () => {
         }
     }
 
+    const addDiscount = async (id_produk) => {
+        try{
+            await axios.get(`https://hayati.fly.dev/adddiscount/${id_produk}`);    
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <div className="container mt-5 ">
@@ -167,6 +175,7 @@ const HasilPHP = () => {
                                             {resultDataKurangLaku.map((produkKurang, index) => (
                                                 <tr key={produkKurang.id}>
                                                     <td>{produkKurang.nama}</td>
+                                                    <button onClick={() => addDiscount(produkKurang.id_produk)} className="button is-small is-danger">Masukan Ke Diskon</button>
                                                 </tr>
                                             ))}
                                         </tbody>

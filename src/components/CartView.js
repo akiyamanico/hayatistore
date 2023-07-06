@@ -48,6 +48,12 @@ const CartView = () => {
       const { nama } = userResponse.data;
       setIdUser(id);
       setUsername(nama);
+      const customerDiscountResponse = await axios.get(`https://hayati.fly.dev/get-discount-cust/${id}`);
+      if (customerDiscountResponse.data.length > 0) {
+        const discountResponse = await axios.get(`https://hayati.fly.dev/get-discount-produk`);
+        setDiscountProducts(discountResponse.data);
+        console.log('discount data', discountResponse);
+      }
       console.log('Token exists');
     } catch (error) {
       console.error(error);
@@ -167,14 +173,35 @@ const CartView = () => {
 
   const calculateSubtotal = () => {
     let total = 0;
-
+  
     products.forEach((product) => {
       const harga = parseFloat(product.harga);
-      const subtotal = isNaN(harga) ? 0 : quantity * harga;
-      total += subtotal;
-    });
+      // Assuming each product has a quantity property
+      console.log('harga', harga)
 
+      if (discountProducts && discountProducts.length > 0) {
+        const discountProduct = discountProducts.find((discount) => discount.id_produk === product.id_produk);
+  
+        if (discountProduct) {
+          const discountedPrice = calculateDiscountedPrice(harga, discountProduct.totaldiskon);
+          console.log('discountedlog', discountedPrice)
+          total += quantity * discountedPrice;
+          console.log('total', total)
+          console.log('total', quantity)
+        } else {
+          total += quantity * harga;
+        }
+      } else {
+        total += quantity * harga;
+      }
+    });
+  
     return total;
+  };
+  
+  const calculateDiscountedPrice = (price, totaldiskon) => {
+    const discountedPrice = price - (price * totaldiskon / 100);
+    return discountedPrice;
   };
 
   const urljpg = 'https://hayati.fly.dev/uploads/';
@@ -222,8 +249,30 @@ const CartView = () => {
                     </span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <p className="text-sm">Rp.{product.harga}</p>
-                    <svg onClick={() => deleteData(product.id_produk)}
+                  {discountProducts && discountProducts.length > 0 ? (
+    <>
+      {discountProducts.find((discountProduct) => discountProduct.id_produk === product.id_produk) ? (
+        <>
+          <p className="text-sm text-red-500 line-through">Rp.{product.harga}</p>
+          {discountProducts.map((discountProduct) => {
+            console.log('check data 1', discountProducts);
+            console.log('check data 2', discountProduct);
+            if (discountProduct.id_produk === product.id_produk) {
+              const discountedPrice = calculateDiscountedPrice(product.harga, discountProduct.totaldiskon);
+              return <p className="text-sm">Rp.{discountedPrice}</p>;
+            }
+            return null;
+          })}
+        </>
+      ) : (
+        <p className="text-sm">Rp.{product.harga}</p>
+      )}
+    </>
+  ) : (
+    <p className="text-sm">Rp.{product.harga}</p>
+  )}
+                    <svg
+                      onClick={() => deleteData(product.id_produk)}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
