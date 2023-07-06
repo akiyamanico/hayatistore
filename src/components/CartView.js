@@ -16,7 +16,7 @@ const CartView = () => {
   const navigate = useNavigate();
   const [buktipembayaran, setBukti] = useState(null);
   const {id_kategori} = useParams();
-
+  const [discountProducts, setDiscountProducts] = useState([]);
   useEffect(() => {
     fetchUsername();
     getCartData();

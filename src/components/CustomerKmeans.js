@@ -15,6 +15,7 @@ const CustomerKmeans = () => {
     const [selling, setSelling] = useState([]);
     const [customer_cluster, setcustomerCluster] = useState([]);
     const [customer_cluster_percentage, setcustomerClusterPercentage] = useState([]);
+    
 
     useEffect(() => {
         refreshToken();
@@ -80,6 +81,14 @@ const CustomerKmeans = () => {
                 // Handle error if needed
             });
     };
+    const addDiscount = async (id) => {
+        try{
+            await axios.get(`http://localhost:5100/adddiscountcust/${id}`);    
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
     return (
         <div className="container mt-5">
             <div className="buttons">
