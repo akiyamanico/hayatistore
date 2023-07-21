@@ -22,7 +22,6 @@ const CustomerKmeans = () => {
         getUsers();
         getCluster();
         getClusterPercentage();
-        handleClick();
     }, []);
     const getCluster = async () => {
         const response = await axios.get('https://hayati.fly.dev/customerkmeans');
@@ -68,19 +67,25 @@ const CustomerKmeans = () => {
         });
         setUsers(response.data);
     }
-    const handleClick = async () => {
-        fetch('https://hayati.fly.dev/clusters_new')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to load data');
-                }
-                return response.json();
-            })
-            .catch((error) => {
-                console.error(error);
-                // Handle error if needed
-            });
-    };
+
+    const fetchData = async () => {
+        try {
+          const response = await fetch('https://hayati.fly.dev/clusters_new');
+          if (!response.ok) {
+            throw new Error('Failed to load data');
+          }
+          const data = await response.json();
+          // Do something with the data (e.g., store it in state, update UI, etc.)
+          console.log(data);
+        } catch (error) {
+          console.error(error);
+          // Handle error if needed
+        }
+      };
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchData();
+      });
+      
     const addDiscount = async (id) => {
         try{
             await axios.get(`http://localhost:5100/adddiscountcust/${id}`);    
