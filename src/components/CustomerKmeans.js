@@ -125,13 +125,10 @@ const CustomerKmeans = () => {
             </React.Fragment>
           );
         } else {
-            return (
-                <React.Fragment key={i}>
+
                   <td>
                    Bukan Customer Loyal
                   </td>
-                </React.Fragment>
-              );
         }
       })}
     </tr>
