@@ -104,7 +104,7 @@ const CustomerKmeans = () => {
                                         <tr>
                                             <th>Nama Customer</th>
                                             <th>Total</th>
-                                            <th>Status</th>
+                                            <th>percentage Kmeans</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -113,9 +113,7 @@ const CustomerKmeans = () => {
                                                 <td>{customer_cluster.customer_nama}</td>
                                                 <td>{customer_cluster.total}</td>
                                                 {customer_cluster_percentage.map((percentage, i) => (
-                                                    i === index && <td key={i}><td>
-                                                    {percentage.percentage > 60 ? "Customer Loyal" : "Customer Tidak Loyal"}
-                                                  </td></td>
+                                                    i === index && <td key={i}>{percentage.percentage > 50 ? "Customer Loyal" : "Customer Kurang Loyal"}</td>
                                                 ))}
                                             </tr>
                                         ))}
