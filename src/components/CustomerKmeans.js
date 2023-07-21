@@ -104,7 +104,7 @@ const CustomerKmeans = () => {
                                         <tr>
                                             <th>Nama Customer</th>
                                             <th>Total</th>
-                                            <th>percentage Kmeans</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -136,7 +136,9 @@ const CustomerKmeans = () => {
             console.log(customer_cluster);
           return (
             <React.Fragment key={i}>
-              <td>{percentage.percentage}</td>
+              <td>
+  {percentage.percentage > 50 ? "Customer Loyal" : "Customer Tidak Loyal"}
+</td>
               <td>
                 <button onClick={() => addDiscount(customer_cluster.id)} className="button is-small is-danger">
                   Masukan Ke Cust Diskon
