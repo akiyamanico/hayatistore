@@ -113,7 +113,9 @@ const CustomerKmeans = () => {
                                                 <td>{customer_cluster.customer_nama}</td>
                                                 <td>{customer_cluster.total}</td>
                                                 {customer_cluster_percentage.map((percentage, i) => (
-                                                    i === index && <td key={i}>{percentage.percentage}</td>
+                                                    i === index && <td key={i}><td>
+                                                    {percentage.percentage > 60 ? "Customer Loyal" : "Customer Tidak Loyal"}
+                                                  </td></td>
                                                 ))}
                                             </tr>
                                         ))}
@@ -136,9 +138,7 @@ const CustomerKmeans = () => {
             console.log(customer_cluster);
           return (
             <React.Fragment key={i}>
-              <td>
-  {percentage.percentage > 50 ? "Customer Loyal" : "Customer Tidak Loyal"}
-</td>
+              <td>{percentage.percentage}</td>
               <td>
                 <button onClick={() => addDiscount(customer_cluster.id)} className="button is-small is-danger">
                   Masukan Ke Cust Diskon
