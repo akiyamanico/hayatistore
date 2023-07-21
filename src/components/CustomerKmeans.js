@@ -99,19 +99,36 @@ const CustomerKmeans = () => {
                                 <p class="text-2xl font-bold">Data Customer</p>
                             </div>
                             <div class="panel-body w-full my-8">
+                                <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Customer</th>
+                                            <th>Distance</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {customer_cluster.map((customer_cluster, index) => (
+                                            <tr key={index}>
+                                                <td>{customer_cluster.customer_nama}</td>
+                               <td>{customer_cluster.distance}</td>
+                                                {customer_cluster_percentage.map((percentage, i) => (
+                                                    i === index && <td key={i}>{percentage.percentage > 50 ? "Customer Loyal" : "Customer Kurang Loyal"}</td>
+                                                ))}
+                                            </tr>
+                                        ))}
+                                    </tbody>
                                     <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>Nama Customer</th>
-                                                <th>Distance</th>
-                                                <th>Aksi / Status</th>
+                                                <th>Aksi</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
   {customer_cluster.map((customer_cluster, index) => (
     <tr key={index}>
       <td>{customer_cluster.customer_nama}</td>
-      <td>{customer_cluster.distance}</td>
       {customer_cluster_percentage.map((percentage, i) => {
         if (i === index && percentage.percentage > 50) {
             console.log(customer_cluster);
@@ -125,10 +142,7 @@ const CustomerKmeans = () => {
             </React.Fragment>
           );
         } else {
-
-                  <td>
-                   Bukan Customer Loyal
-                  </td>
+            return null
         }
       })}
     </tr>
@@ -137,6 +151,7 @@ const CustomerKmeans = () => {
 
                                         
                                     </table>
+                                </table>
                             </div>
                         </div>
                     </div>
