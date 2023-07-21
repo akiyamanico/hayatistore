@@ -288,14 +288,9 @@ const CartView = () => {
             </div>
           ))}
         </div>
-
-        <div className="h-full rounded-lg border bg-white shadow-md md:mt-0 md:w-1/3 flex">
-
-
- 
+        <div className="h-full rounded-lg border bg-white shadow-md md:mt-0 md:w-1/3 flex flex-col">
             <p className="text-gray-700">Subtotal</p>
             <p className="text-gray-700">Rp. {calculateSubtotal()}</p>
-    
             <form onSubmit={InsertData}>
               <p className="text-gray-700">Produk Yang Akan Dibeli : </p>
 
