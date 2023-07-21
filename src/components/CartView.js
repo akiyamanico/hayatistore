@@ -345,14 +345,12 @@ const CartView = () => {
                       <p className="text-gray-700">Sebelum Melakukan Transaksi Harap Melakukan Transfer ke Nomor Data Atau No Rek Yang Tersedia Di Bawah Ini</p>
           <p className="text-gray-700">Dana : 081277467118 A/N Fi Zilalil Huda</p>
           <p className="text-gray-700">Bank Jago : 103687829082 A/N Fi Zilalil Huda</p>
-              <div className="flex justify-end">
                 <button
                   type="submit"
                   className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   Bayar
                 </button>
-              </div>
             </form>
           </div>
         </div>
