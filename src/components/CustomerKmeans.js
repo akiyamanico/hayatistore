@@ -22,6 +22,7 @@ const CustomerKmeans = () => {
         getUsers();
         getCluster();
         getClusterPercentage();
+        handleClick();
     }, []);
     const getCluster = async () => {
         const response = await axios.get('https://hayati.fly.dev/customerkmeans');
@@ -67,25 +68,19 @@ const CustomerKmeans = () => {
         });
         setUsers(response.data);
     }
-
-    const fetchData = async () => {
-        try {
-          const response = await fetch('https://hayati.fly.dev/clusters_new');
-          if (!response.ok) {
-            throw new Error('Failed to load data');
-          }
-          const data = await response.json();
-          // Do something with the data (e.g., store it in state, update UI, etc.)
-          console.log(data);
-        } catch (error) {
-          console.error(error);
-          // Handle error if needed
-        }
-      };
-    document.addEventListener('DOMContentLoaded', () => {
-        fetchData();
-      });
-      
+    const handleClick = async () => {
+        fetch('https://hayati.fly.dev/clusters_new')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Failed to load data');
+                }
+                return response.json();
+            })
+            .catch((error) => {
+                console.error(error);
+                // Handle error if needed
+            });
+    };
     const addDiscount = async (id) => {
         try{
             await axios.get(`http://localhost:5100/adddiscountcust/${id}`);    
@@ -108,7 +103,7 @@ const CustomerKmeans = () => {
                                     <thead>
                                         <tr>
                                             <th>Nama Customer</th>
-                                            <th>Distance</th>
+                                            <th>Total</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -116,7 +111,7 @@ const CustomerKmeans = () => {
                                         {customer_cluster.map((customer_cluster, index) => (
                                             <tr key={index}>
                                                 <td>{customer_cluster.customer_nama}</td>
-                               <td>{customer_cluster.distance}</td>
+                                                <td>{customer_cluster.total}</td>
                                                 {customer_cluster_percentage.map((percentage, i) => (
                                                     i === index && <td key={i}>{percentage.percentage > 50 ? "Customer Loyal" : "Customer Kurang Loyal"}</td>
                                                 ))}
@@ -127,6 +122,7 @@ const CustomerKmeans = () => {
                                         <thead>
                                             <tr>
                                                 <th>Nama Customer</th>
+                                                <th>Distance</th>
                                                 <th>Aksi</th>
                                                 </tr>
                                         </thead>
@@ -134,6 +130,7 @@ const CustomerKmeans = () => {
   {customer_cluster.map((customer_cluster, index) => (
     <tr key={index}>
       <td>{customer_cluster.customer_nama}</td>
+      <td>{customer_cluster.distance}</td>
       {customer_cluster_percentage.map((percentage, i) => {
         if (i === index && percentage.percentage > 50) {
             console.log(customer_cluster);
@@ -147,7 +144,7 @@ const CustomerKmeans = () => {
             </React.Fragment>
           );
         } else {
-            return null
+          return null;
         }
       })}
     </tr>
