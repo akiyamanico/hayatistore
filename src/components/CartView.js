@@ -295,8 +295,7 @@ const CartView = () => {
  
             <p className="text-gray-700">Subtotal</p>
             <p className="text-gray-700">Rp. {calculateSubtotal()}</p>
-       
-          <div>
+    
             <form onSubmit={InsertData}>
               <p className="text-gray-700">Produk Yang Akan Dibeli : </p>
 
@@ -355,7 +354,7 @@ const CartView = () => {
           </div>
         </div>
       </div>
-    </div>
+
   );
 };
 
