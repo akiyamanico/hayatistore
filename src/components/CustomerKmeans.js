@@ -99,30 +99,12 @@ const CustomerKmeans = () => {
                                 <p class="text-2xl font-bold">Data Customer</p>
                             </div>
                             <div class="panel-body w-full my-8">
-                                <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Customer</th>
-                                            <th>percentage Kmeans</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {customer_cluster.map((customer_cluster, index) => (
-                                            <tr key={index}>
-                                                <td>{customer_cluster.customer_nama}</td>
-                                                <td>{customer_cluster.total}</td>
-                                                {customer_cluster_percentage.map((percentage, i) => (
-                                                    i === index && <td key={i}>{percentage.percentage > 50 ? "Customer Loyal" : "Customer Kurang Loyal"}</td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
                                     <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>Nama Customer</th>
                                                 <th>Distance</th>
-                                                <th>Aksi</th>
+                                                <th>Aksi / Status</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
@@ -143,7 +125,13 @@ const CustomerKmeans = () => {
             </React.Fragment>
           );
         } else {
-          return null;
+            return (
+                <React.Fragment key={i}>
+                  <td>
+                   Bukan Customer Loyal
+                  </td>
+                </React.Fragment>
+              );
         }
       })}
     </tr>
@@ -152,7 +140,6 @@ const CustomerKmeans = () => {
 
                                         
                                     </table>
-                                </table>
                             </div>
                         </div>
                     </div>
