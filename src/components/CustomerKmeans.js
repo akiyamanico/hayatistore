@@ -132,7 +132,7 @@ const CustomerKmeans = () => {
       <td>{customer_cluster.customer_nama}</td>
       <td>{customer_cluster.distance}</td>
       {customer_cluster_percentage.map((percentage, i) => {
-        if (i === index && percentage.percentage > 70) {
+        if (i === index && percentage.percentage > 50) {
             console.log(customer_cluster);
           return (
             <React.Fragment key={i}>
