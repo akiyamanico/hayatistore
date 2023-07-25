@@ -104,7 +104,7 @@ const CustomerKmeans = () => {
                                         <tr>
                                             <th>Nama Customer</th>
                                             <th>Total</th>
-                                            <th>percentage Kmeans</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
