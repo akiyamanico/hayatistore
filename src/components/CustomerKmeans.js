@@ -77,7 +77,7 @@ const CustomerKmeans = () => {
     };
     const addDiscount = async (id) => {
         try{
-            await axios.get(`http://localhost:5100/adddiscountcust/${id}`);    
+            await axios.get(`https://hayati.fly.dev/adddiscountcust/${id}`);    
         }
         catch (error) {
             console.error(error);
