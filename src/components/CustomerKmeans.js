@@ -83,26 +83,43 @@ const CustomerKmeans = () => {
             console.error(error);
         }
     }
-    return (
-        <div className="container mx-auto p-8">
-        <h1 className="text-2xl font-semibold mb-4">Cluster Data Pelanggan</h1>
-        <div className="grid grid-cols-2 gap-4">
-        {cluster.map(cluster => (
-          <div key={cluster.label} className="border p-4 mb-4">
-            <h2 className="text-xl font-semibold mb-2">Cluster {cluster.label}</h2>
-            {cluster.customers.map(customer => (
-              <div key={customer.nama} className="mb-2">
-                <p>{customer.nama}</p>
-                <p>Total Belanja: {customer.total}</p>
-                <p>Total Pembayaran: Rp.{customer.totalpembayaran}</p>
-                <button onClick={() => addDiscount(customer.id)} className="button is-small is-danger">Masukan Ke Diskon</button>
-              </div>
-            ))}
-          </div>
-        ))}
-        </div>
-      </div>
-    )
+    <div className="container mx-auto p-8">
+  <h1 className="text-2xl font-semibold mb-4">Cluster Data Pelanggan</h1>
+  <table className="table">
+    <thead>
+      <tr>
+        <th>Cluster Label</th>
+        <th>Nama Pelanggan</th>
+        <th>Total Belanja</th>
+        <th>Total Pembayaran</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {cluster.map(cluster => (
+        <React.Fragment key={cluster.label}>
+          {cluster.customers.map(customer => (
+            <tr key={customer.nama}>
+              <td>Cluster {cluster.label}</td>
+              <td>{customer.nama}</td>
+              <td>{customer.total}</td>
+              <td>Rp.{customer.totalpembayaran}</td>
+              <td>
+                <button
+                  onClick={() => addDiscount(customer.id)}
+                  className="button is-small is-danger"
+                >
+                  Masukan Ke Diskon
+                </button>
+              </td>
+            </tr>
+          ))}
+        </React.Fragment>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 }
 
 export default CustomerKmeans
