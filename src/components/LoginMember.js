@@ -39,12 +39,6 @@ const LoginMember = () => {
             <div className="rounded-md appearance-none relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm">
                 <div className="max-w-md w-full space-y-8">
                     <div className="columns is-centered">
-                        <div className={`modal ${showModal ? 'visible' : 'hidden'}`}>
-                            <div className="modal-content">
-                                <p>Password Salah! Silahkan Cek Password</p>
-                                <button onClick={() => setShowModal(false)}>Close</button>
-                            </div>
-                        </div>
                         <div className="column is-4-desktop">
                             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                                 <p className="has-text-centered"></p>
@@ -58,6 +52,11 @@ const LoginMember = () => {
                                     <label className="label">Password</label>
                                     <div className="controls">
                                         <input type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******" value={password} onChange={event => setPassword(event.target.value)} />
+                                    </div>
+                                </div>
+                                <div className={`modal ${showModal ? 'visible' : 'hidden'}`}>
+                                    <div className="modal-content">
+                                        <p>Password Salah! Silahkan Cek Password</p>
                                     </div>
                                 </div>
                                 <div className="field mt-5">
