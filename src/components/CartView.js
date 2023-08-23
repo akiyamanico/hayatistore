@@ -15,7 +15,7 @@ const CartView = () => {
   const [idUser, setIdUser] = useState([]);
   const navigate = useNavigate();
   const [buktipembayaran, setBukti] = useState(null);
-  const {id_kategori} = useParams();
+  const { id_kategori } = useParams();
   const [discountProducts, setDiscountProducts] = useState([]);
   useEffect(() => {
     fetchUsername();
@@ -35,12 +35,12 @@ const CartView = () => {
   const fetchUsername = async () => {
     try {
       const token = Cookies.get('token');
-  
+
       if (!token) {
         console.log('Token not found');
         return;
       }
-  
+
       // Decode the token to extract the user ID
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
@@ -64,12 +64,12 @@ const CartView = () => {
   const getCartData = async () => {
     try {
       const token = Cookies.get('token');
-  
+
       if (!token) {
         console.log('Token not found');
         return;
       }
-  
+
       // Decode the token to extract the user ID
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
@@ -124,7 +124,7 @@ const CartView = () => {
       const { id } = decodedToken;
       const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
       console.log('response.data:', response.data);
-      const  idproductres = response.data.map((product) => product.id_produk)
+      const idproductres = response.data.map((product) => product.id_produk)
       setIdProduct(idproductres);
       const formData = new FormData();
       formData.append('quantity', quantity);
@@ -173,15 +173,14 @@ const CartView = () => {
 
   const calculateSubtotal = () => {
     let total = 0;
-  
+
     products.forEach((product) => {
       const harga = parseFloat(product.harga);
-      // Assuming each product has a quantity property
       console.log('harga', harga)
 
       if (discountProducts && discountProducts.length > 0) {
         const discountProduct = discountProducts.find((discount) => discount.id_produk === product.id_produk);
-  
+
         if (discountProduct) {
           const discountedPrice = calculateDiscountedPrice(harga, discountProduct.totaldiskon);
           console.log('discountedlog', discountedPrice)
@@ -195,10 +194,10 @@ const CartView = () => {
         total += quantity * harga;
       }
     });
-  
+
     return total;
   };
-  
+
   const calculateDiscountedPrice = (price, totaldiskon) => {
     const discountedPrice = price - (price * totaldiskon / 100);
     return discountedPrice;
@@ -249,28 +248,28 @@ const CartView = () => {
                     </span>
                   </div>
                   <div className="flex items-center space-x-4">
-                  {discountProducts && discountProducts.length > 0 ? (
-    <>
-      {discountProducts.find((discountProduct) => discountProduct.id_produk === product.id_produk) ? (
-        <>
-          <p className="text-sm text-red-500 line-through">Rp.{product.harga}</p>
-          {discountProducts.map((discountProduct) => {
-            console.log('check data 1', discountProducts);
-            console.log('check data 2', discountProduct);
-            if (discountProduct.id_produk === product.id_produk) {
-              const discountedPrice = calculateDiscountedPrice(product.harga, discountProduct.totaldiskon);
-              return <p className="text-sm">Rp.{discountedPrice}</p>;
-            }
-            return null;
-          })}
-        </>
-      ) : (
-        <p className="text-sm">Rp.{product.harga}</p>
-      )}
-    </>
-  ) : (
-    <p className="text-sm">Rp.{product.harga}</p>
-  )}
+                    {discountProducts && discountProducts.length > 0 ? (
+                      <>
+                        {discountProducts.find((discountProduct) => discountProduct.id_produk === product.id_produk) ? (
+                          <>
+                            <p className="text-sm text-red-500 line-through">Rp.{product.harga}</p>
+                            {discountProducts.map((discountProduct) => {
+                              console.log('check data 1', discountProducts);
+                              console.log('check data 2', discountProduct);
+                              if (discountProduct.id_produk === product.id_produk) {
+                                const discountedPrice = calculateDiscountedPrice(product.harga, discountProduct.totaldiskon);
+                                return <p className="text-sm">Rp.{discountedPrice}</p>;
+                              }
+                              return null;
+                            })}
+                          </>
+                        ) : (
+                          <p className="text-sm">Rp.{product.harga}</p>
+                        )}
+                      </>
+                    ) : (
+                      <p className="text-sm">Rp.{product.harga}</p>
+                    )}
                     <svg
                       onClick={() => deleteData(product.id_produk)}
                       xmlns="http://www.w3.org/2000/svg"
@@ -289,66 +288,66 @@ const CartView = () => {
           ))}
         </div>
         <div className="h-full rounded-lg border bg-white shadow-md md:mt-0 md:w-1/3 flex flex-col">
-            <p className="text-gray-700">Subtotal</p>
-            <p className="text-gray-700">Rp. {calculateSubtotal()}</p>
-            <form onSubmit={InsertData}>
-              <p className="text-gray-700">Produk Yang Akan Dibeli : </p>
+          <p className="text-gray-700">Subtotal</p>
+          <p className="text-gray-700">Rp. {calculateSubtotal()}</p>
+          <form onSubmit={InsertData}>
+            <p className="text-gray-700">Produk Yang Akan Dibeli : </p>
 
-              {products.map((product) => (
-                <p
-                  key={product.id}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  {product.nama}
-                </p>
-              ))}
-              <p className="text-gray-700">Total yang akan dibayar : </p>
+            {products.map((product) => (
               <p
+                key={product.id}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                Rp. {calculateSubtotal()}
+                {product.nama}
               </p>
-              <p className="text-gray-700">Nama Penerima</p>
-              <input
-                type="text"
-                value={namapenerima}
-                onChange={(event) => setNamaPenerima(event.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-              <p className="text-gray-700">Alamat</p>
-              <input
-                type="text"
-                value={alamat}
-                onChange={(event) => setAlamat(event.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-              <p className="text-gray-700">Nomor Telpon</p>
-              <input
-                type="text"
-                value={nomortelp}
-                onChange={(event) => setNomorTelp(event.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-              <p className="text-gray-700">Upload Bukti Pembayaran</p>
-              <input
-                type="file"
-                className="form-control-file"
-                name="buktipembayaran"
-                onChange={(event) => setBukti(event.target.files[0])}
-              />
-                      <p className="text-gray-700">Sebelum Melakukan Transaksi Harap Melakukan Transfer ke Nomor Data Atau No Rek Yang Tersedia Di Bawah Ini</p>
-          <p className="text-gray-700">Dana : 081277467118 A/N Fi Zilalil Huda</p>
-          <p className="text-gray-700">Bank Jago : 103687829082 A/N Fi Zilalil Huda</p>
-                <button
-                  type="submit"
-                  className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                  Bayar
-                </button>
-            </form>
-          </div>
+            ))}
+            <p className="text-gray-700">Total yang akan dibayar : </p>
+            <p
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              Rp. {calculateSubtotal()}
+            </p>
+            <p className="text-gray-700">Nama Penerima</p>
+            <input
+              type="text"
+              value={namapenerima}
+              onChange={(event) => setNamaPenerima(event.target.value)}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <p className="text-gray-700">Alamat</p>
+            <input
+              type="text"
+              value={alamat}
+              onChange={(event) => setAlamat(event.target.value)}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <p className="text-gray-700">Nomor Telpon</p>
+            <input
+              type="text"
+              value={nomortelp}
+              onChange={(event) => setNomorTelp(event.target.value)}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <p className="text-gray-700">Upload Bukti Pembayaran</p>
+            <input
+              type="file"
+              className="form-control-file"
+              name="buktipembayaran"
+              onChange={(event) => setBukti(event.target.files[0])}
+            />
+            <p className="text-gray-700">Sebelum Melakukan Transaksi Harap Melakukan Transfer ke Nomor Data Atau No Rek Yang Tersedia Di Bawah Ini</p>
+            <p className="text-gray-700">Dana : 081277467118 A/N Fi Zilalil Huda</p>
+            <p className="text-gray-700">Bank Jago : 103687829082 A/N Fi Zilalil Huda</p>
+            <button
+              type="submit"
+              className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Bayar
+            </button>
+          </form>
         </div>
       </div>
+    </div>
 
   );
 };

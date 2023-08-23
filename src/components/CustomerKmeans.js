@@ -13,25 +13,19 @@ const CustomerKmeans = () => {
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
     const [selling, setSelling] = useState([]);
-    const [customer_cluster, setcustomerCluster] = useState([]);
-    const [customer_cluster_percentage, setcustomerClusterPercentage] = useState([]);
-    
+    const [cluster, setcustomer] = useState([]);
 
     useEffect(() => {
         refreshToken();
         getUsers();
         getCluster();
-        getClusterPercentage();
         handleClick();
     }, []);
     const getCluster = async () => {
-        const response = await axios.get('https://hayati.fly.dev/customerkmeans');
-        setcustomerCluster(response.data);
+        const response = await axios.get('https://hayati.fly.dev/clusters_new');
+        setcustomer(response.data.labeledClusters);
     }
-    const getClusterPercentage = async () => {
-        const response = await axios.get('https://hayati.fly.dev/customerkmeanspercentage');
-        setcustomerClusterPercentage(response.data);
-    }
+    
     const refreshToken = async () => {
         try {
             const response = await axios.get('https://sequelizehayati.fly.dev/token');
@@ -90,79 +84,24 @@ const CustomerKmeans = () => {
         }
     }
     return (
-        <div className="container mt-5">
-            <div className="buttons">
-                <div id="page-wrapper">
-                    <div class="row col-lg-12 w-full">
-                        <div class="panel panel-primary my-12">
-                            <div class="panel-heading text-center flex justify-center px-4">
-                                <p class="text-2xl font-bold">Data Customer</p>
-                            </div>
-                            <div class="panel-body w-full my-8">
-                                <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Customer</th>
-                                            <th>Total</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {customer_cluster.map((customer_cluster, index) => (
-                                            <tr key={index}>
-                                                <td>{customer_cluster.customer_nama}</td>
-                                                <td>{customer_cluster.total}</td>
-                                                {customer_cluster_percentage.map((percentage, i) => (
-                                                    i === index && <td key={i}>{percentage.percentage > 50 ? "Customer Loyal" : "Customer Kurang Loyal"}</td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                    <table class="table table-striped table-bordered table-hover w-full" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama Customer</th>
-                                                <th>Distance</th>
-                                                <th>Aksi</th>
-                                                </tr>
-                                        </thead>
-                                        <tbody>
-  {customer_cluster.map((customer_cluster, index) => (
-    <tr key={index}>
-      <td>{customer_cluster.customer_nama}</td>
-      <td>{customer_cluster.distance}</td>
-      {customer_cluster_percentage.map((percentage, i) => {
-        if (i === index && percentage.percentage > 50) {
-            console.log(customer_cluster);
-          return (
-            <React.Fragment key={i}>
-
-              <td>{percentage.percentage}</td>
-
-              <td>
-                <button onClick={() => addDiscount(customer_cluster.id)} className="button is-small is-danger">
-                  Masukan Ke Cust Diskon
-                </button>
-              </td>
-            </React.Fragment>
-          );
-        } else {
-          return null;
-        }
-      })}
-    </tr>
-  ))}
-</tbody>
-
-                                        
-                                    </table>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div className="container mx-auto p-8">
+        <h1 className="text-2xl font-semibold mb-4">Cluster Data Pelanggan</h1>
+        <div className="grid grid-cols-2 gap-4">
+        {cluster.map(cluster => (
+          <div key={cluster.label} className="border p-4 mb-4">
+            <h2 className="text-xl font-semibold mb-2">Cluster {cluster.label}</h2>
+            {cluster.customers.map(customer => (
+              <div key={customer.nama} className="mb-2">
+                <p>{customer.nama}</p>
+                <p>Total Belanja: {customer.total_belanja}</p>
+                <p>Total Pembayaran: Rp.{customer.total_pembayaran}</p>
+                <button onClick={() => addDiscount(customer.id)} className="button is-small is-danger">Masukan Ke Diskon</button>
+              </div>
+            ))}
+          </div>
+        ))}
         </div>
+      </div>
     )
 }
 
