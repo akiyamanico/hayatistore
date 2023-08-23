@@ -93,8 +93,8 @@ const CustomerKmeans = () => {
             {cluster.customers.map(customer => (
               <div key={customer.nama} className="mb-2">
                 <p>{customer.nama}</p>
-                <p>Total Belanja: {customer.total_belanja}</p>
-                <p>Total Pembayaran: Rp.{customer.total_pembayaran}</p>
+                <p>Total Belanja: {customer.total}</p>
+                <p>Total Pembayaran: Rp.{customer.totalpembayaran}</p>
                 <button onClick={() => addDiscount(customer.id)} className="button is-small is-danger">Masukan Ke Diskon</button>
               </div>
             ))}
