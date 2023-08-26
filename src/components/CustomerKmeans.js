@@ -128,7 +128,7 @@ const CustomerKmeans = () => {
         <tbody>
           {cluster.map(cluster => (
             <tr>
-              <td className="border px-4 py-2">{cluster.centroids.join(', ')}</td>
+              <td className="border px-4 py-2">{cluster.centroids}</td>
             </tr>
           ))}
         </tbody>
