@@ -122,14 +122,12 @@ const CustomerKmeans = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="px-4 py-2">Cluster</th>
             <th className="px-4 py-2">Centroid Values</th>
           </tr>
         </thead>
         <tbody>
           {cluster.map(cluster => (
-            <tr key={cluster.label}>
-              <td className="border px-4 py-2">{cluster.label}</td>
+            <tr>
               <td className="border px-4 py-2">{cluster.centroids.join(', ')}</td>
             </tr>
           ))}
