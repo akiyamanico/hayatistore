@@ -85,24 +85,39 @@ const CustomerKmeans = () => {
     }
     return (
         <div className="container mx-auto p-8">
-        <h1 className="text-2xl font-semibold mb-4">Cluster Data Pelanggan</h1>
-        <div className="grid grid-cols-2 gap-4">
-        {cluster.map(cluster => (
-          <div key={cluster.label} className="border p-4 mb-4">
-            <h2 className="text-xl font-semibold mb-2">Cluster {cluster.label}</h2>
-            {cluster.customers.map(customer => (
-              <div key={customer.nama} className="mb-2">
-                <p>{customer.nama}</p>
-                <p>Total Belanja: {customer.total}</p>
-                <p>Total Pembayaran: Rp.{customer.totalpembayaran}</p>
-                <button onClick={() => addDiscount(customer.id)} className="button is-small is-danger">Masukan Ke Diskon</button>
+          <h1 className="text-2xl font-semibold mb-4">Cluster Data Pelanggan</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {cluster.map(cluster => (
+              <div key={cluster.label} className="border p-4 mb-4">
+                <h2 className="text-xl font-semibold mb-2">Cluster {cluster.label}</h2>
+                <table className="table-auto w-full">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2">Nama</th>
+                      <th className="px-4 py-2">Total Belanja</th>
+                      <th className="px-4 py-2">Total Pembayaran</th>
+                      <th className="px-4 py-2">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cluster.customers.map(customer => (
+                      <tr key={customer.nama}>
+                        <td className="border px-4 py-2">{customer.nama}</td>
+                        <td className="border px-4 py-2">{customer.total}</td>
+                        <td className="border px-4 py-2">Rp.{customer.totalpembayaran}</td>
+                        <td className="border px-4 py-2">
+                          <button onClick={() => addDiscount(customer.id)} className="button is-small is-danger">Masukan Ke Diskon</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             ))}
           </div>
-        ))}
         </div>
-      </div>
-    )
+      );
+      
 }
 
 export default CustomerKmeans
