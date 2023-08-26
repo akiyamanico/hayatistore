@@ -117,6 +117,25 @@ const CustomerKmeans = () => {
               </div>
             ))}
           </div>
+          <div className="mt-8">
+      <h2 className="text-xl font-semibold mb-2">Centroids</h2>
+      <table className="table-auto">
+        <thead>
+          <tr>
+            <th className="px-4 py-2">Cluster</th>
+            <th className="px-4 py-2">Centroid Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cluster.map(cluster => (
+            <tr key={cluster.label}>
+              <td className="border px-4 py-2">{cluster.label}</td>
+              <td className="border px-4 py-2">{cluster.centroids.join(', ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
         </div>
       );      
 }
