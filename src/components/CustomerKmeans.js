@@ -96,7 +96,7 @@ const CustomerKmeans = () => {
                       <th className="px-4 py-2">Nama</th>
                       <th className="px-4 py-2">Total Belanja</th>
                       <th className="px-4 py-2">Total Pembayaran</th>
-                      <th className="px-4 py-2">Aksi</th>
+                      {cluster.label === 1 && <th className="px-4 py-2">Aksi</th>}
                     </tr>
                   </thead>
                   <tbody>
@@ -105,9 +105,11 @@ const CustomerKmeans = () => {
                         <td className="border px-4 py-2">{customer.nama}</td>
                         <td className="border px-4 py-2">{customer.total}</td>
                         <td className="border px-4 py-2">Rp.{customer.totalpembayaran}</td>
-                        <td className="border px-4 py-2">
-                          <button onClick={() => addDiscount(customer.id)} className="button is-small is-danger">Masukan Ke Diskon</button>
-                        </td>
+                        {cluster.label === 1 && (
+                          <td className="border px-4 py-2">
+                            <button onClick={() => addDiscount(customer.id)} className="button is-small is-danger">Masukan Ke Diskon</button>
+                          </td>
+                        )}
                       </tr>
                     ))}
                   </tbody>
@@ -116,8 +118,7 @@ const CustomerKmeans = () => {
             ))}
           </div>
         </div>
-      );
-      
+      );      
 }
 
 export default CustomerKmeans
