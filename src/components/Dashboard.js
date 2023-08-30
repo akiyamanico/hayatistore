@@ -30,7 +30,7 @@ const Dashboard = () => {
             axios.get(`https://hayati.fly.dev/deletedesc/${id}`),
             axios.get(`https://hayati.fly.dev/deletepenjualan/${id}`),
           ]);
-
+          getProducts();
         } catch (error) {
           console.error(error);
         }
