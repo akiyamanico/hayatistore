@@ -126,9 +126,6 @@ const DiskonProduk = () => {
                           <input
                             type="text"
                             value={product.totaldiskon}
-                            onChange={(event) =>
-                              updateDiscount(product.id_produk, event.target.value)
-                            }
                           />
                         </td>
                         <td>{calculatePriceWithDiscount(product.harga, product.totaldiskon)}</td>
