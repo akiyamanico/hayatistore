@@ -85,6 +85,16 @@ const DiskonProduk = () => {
     }
   };
 
+  const handleDiscountChange = async (id_produk, newTotalDiskon) => {
+    const updatedProduct = products.map((product) => 
+        product.id_produk === id_produk
+        ? { ...product, totaldiskon: newTotalDiskon }
+        : product
+    );
+    setProducts(updatedProduct);
+    updateDiscount(id_produk, newTotalDiskon);
+};
+
   const handleFormSubmit = (event, idProduk, diskon) => {
     event.preventDefault();
     updateDiscount(idProduk, diskon);
@@ -126,6 +136,9 @@ const DiskonProduk = () => {
                           <input
                             type="text"
                             value={product.totaldiskon}
+                            onChange={(event) =>
+                              handleDiscountChange(product.id_produk, event.target.value)
+                            }
                           />
                         </td>
                         <td>{calculatePriceWithDiscount(product.harga, product.totaldiskon)}</td>
@@ -137,7 +150,6 @@ const DiskonProduk = () => {
                   </tbody>
                 </table>
               </form>
-              {/* TODO: Pagination */}
             </div>
           </div>
         </div>
