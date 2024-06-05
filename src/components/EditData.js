@@ -20,7 +20,7 @@ const EditData = () => {
           setNama(data.nama);
           setHarga(data.harga); 
         };
-const API_URL = 'https://sequelizehayati.fly.dev/';
+const API_URL = 'https://kmeans-crm-backend-sequelize-c5xdhud6vq-et.a.run.app/';
 const navigate = useNavigate();
 const updateData = async (id_produk, nama, id_kategori, stok, harga) => {
   try {

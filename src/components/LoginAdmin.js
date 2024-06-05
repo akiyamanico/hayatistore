@@ -13,7 +13,7 @@ const LoginAdmin = () => {
     const Auth = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('https://sequelizehayati.fly.dev/login', {
+            await axios.post('https://kmeans-crm-backend-sequelize-c5xdhud6vq-et.a.run.app/login', {
                 email: email,
                 password: password
             });

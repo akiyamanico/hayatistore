@@ -13,7 +13,7 @@ const Register = () => {
     const Register = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('https://sequelizehayati.fly.dev/users', {
+            await axios.post('https://kmeans-crm-backend-sequelize-c5xdhud6vq-et.a.run.app/users', {
                 name: name,
                 email: email,
                 password: password,
