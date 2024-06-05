@@ -15,7 +15,7 @@ const EditData = () => {
   getProductById();
 }, []);
     const getProductById = async () => {
-          const response = await fetch(`https://hayati.fly.dev/produk/${id_produk}`);
+          const response = await fetch(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/produk/${id_produk}`);
           const data = await response.json();
           setNama(data.nama);
           setHarga(data.harga); 

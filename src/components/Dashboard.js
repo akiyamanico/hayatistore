@@ -19,16 +19,16 @@ const Dashboard = () => {
         getProducts();
     }, []);
     const getProducts = async () => {
-        const response = await axios.get('https://hayati.fly.dev/produk');
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/produk');
         setProduct(response.data);
     }
     const deleteProduct = async (id) => {
         try {
           await Promise.all([
-            axios.get(`https://hayati.fly.dev/deleteproduk/${id}`),
-            axios.get(`https://hayati.fly.dev/deletemining/${id}`),
-            axios.get(`https://hayati.fly.dev/deletedesc/${id}`),
-            axios.get(`https://hayati.fly.dev/deletepenjualan/${id}`),
+            axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/deleteproduk/${id}`),
+            axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/deletemining/${id}`),
+            axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/deletedesc/${id}`),
+            axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/deletepenjualan/${id}`),
           ]);
           getProducts();
         } catch (error) {

@@ -44,13 +44,13 @@ const CartView = () => {
       // Decode the token to extract the user ID
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
-      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
+      const userResponse = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/usermember/${id}`);
       const { nama } = userResponse.data;
       setIdUser(id);
       setUsername(nama);
-      const customerDiscountResponse = await axios.get(`https://hayati.fly.dev/get-discount-cust/${id}`);
+      const customerDiscountResponse = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/get-discount-cust/${id}`);
       if (customerDiscountResponse.data.length > 0) {
-        const discountResponse = await axios.get(`https://hayati.fly.dev/get-discount-produk`);
+        const discountResponse = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/get-discount-produk`);
         setDiscountProducts(discountResponse.data);
         console.log('discount data', discountResponse);
       }
@@ -73,7 +73,7 @@ const CartView = () => {
       // Decode the token to extract the user ID
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
-      const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
+      const response = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/cartlist/${id}`);
       const updatedProducts = response.data.map((product) => ({
         ...product,
         pictureUrlJPEG: convertToJPEG(`/uploads/${product.picture}`),
@@ -97,7 +97,7 @@ const CartView = () => {
 
   const deleteData = async (id_produk) => {
     try {
-      await axios.get(`https://hayati.fly.dev/removecart/?idcust=${idUser}&idproduk=${id_produk}`);
+      await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/removecart/?idcust=${idUser}&idproduk=${id_produk}`);
       getCartData();
     } catch (error) {
       console.error(error);
@@ -122,13 +122,13 @@ const CartView = () => {
       const token = Cookies.get('token');
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
-      const response = await axios.get(`https://hayati.fly.dev/cartlist/${id}`);
+      const response = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/cartlist/${id}`);
       console.log('response.data:', response.data);
       const idproductres = response.data.map((product) => product.id_produk)
       setIdProduct(idproductres);
       const formData = new FormData();
       formData.append('quantity', quantity);
-      await axios.post('https://hayati.fly.dev/updatequantity', { idproductres, quantity, idcustomer: id });
+      await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/updatequantity', { idproductres, quantity, idcustomer: id });
       console.log('Success!');
     } catch (error) {
       console.error('Error :', error);
@@ -146,7 +146,7 @@ const CartView = () => {
       formData.append('quantity', quantity);
       formData.append('totalbayar', calculateSubtotal());
       formData.append('buktipembayaran', buktipembayaran);
-      await axios.post('https://hayati.fly.dev/cart_insert', formData);
+      await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/cart_insert', formData);
     } catch (error) {
       if (error.response) {
         console.error(error.response.data.msg);
@@ -203,7 +203,7 @@ const CartView = () => {
     return discountedPrice;
   };
 
-  const urljpg = 'https://hayati.fly.dev/uploads/';
+  const urljpg = 'https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/uploads/';
 
   return (
     <div className="h-screen bg-gray-100 pt-20">

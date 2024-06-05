@@ -22,7 +22,7 @@ const CustomerKmeans = () => {
         handleClick();
     }, []);
     const getCluster = async () => {
-        const response = await axios.get('https://hayati.fly.dev/clusters_new');
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/clusters_new');
         setcustomer(response.data.labeledClusters);
     }
     
@@ -63,7 +63,7 @@ const CustomerKmeans = () => {
         setUsers(response.data);
     }
     const handleClick = async () => {
-        fetch('https://hayati.fly.dev/clusters_new')
+        fetch('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/clusters_new')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Failed to load data');
@@ -77,7 +77,7 @@ const CustomerKmeans = () => {
     };
     const addDiscount = async (id) => {
         try{
-            await axios.get(`https://hayati.fly.dev/adddiscountcust/${id}`);    
+            await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/adddiscountcust/${id}`);    
         }
         catch (error) {
             console.error(error);

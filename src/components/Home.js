@@ -26,7 +26,7 @@ const HayatiHome = () => {
       const { id } = decodedToken;
       console.log('log id : ', id)
       // Use the user ID to fetch the username from the server
-      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
+      const userResponse = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/usermember/${id}`);
       const { nama } = userResponse.data;
       console.log('first method', nama)
       setUsername(nama);

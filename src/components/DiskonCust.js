@@ -19,7 +19,7 @@ const DiskonCust = () => {
 
   const getCustDisc = async () => {
     try {
-      const response = await axios.get('https://hayati.fly.dev/get-discount-cust');
+      const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/get-discount-cust');
         setDisc(response.data);
     } catch (error) {
       console.error(error);

@@ -21,7 +21,7 @@ const ReportCustomer = () => {
         getCust();
     }, []);
     const getCust = async () => {
-        const response = await axios.get('https://hayati.fly.dev/customerhistory');
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/customerhistory');
         setCustomerHistory(response.data);
     }
     const refreshToken = async () => {

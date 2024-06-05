@@ -29,7 +29,7 @@ const StatusPayment = () => {
       const { id } = decodedToken;
       console.log('log id : ', id)
       // Use the user ID to fetch the username from the server
-      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
+      const userResponse = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/usermember/${id}`);
       const { nama } = userResponse.data;
       console.log('first method', nama)
       setUsername(nama);
@@ -53,7 +53,7 @@ const getCartMember = async () => {
     // Decode the token to extract the user ID
     const decodedToken = jwt_decode(token);
     const { id } = decodedToken;
-    const cartMemberConst = await axios.get(`https://hayati.fly.dev/getcartmember/${id}`);
+    const cartMemberConst = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/getcartmember/${id}`);
     const updatedProducts = cartMemberConst.data.map((cartMemberProof) => ({
       ...cartMemberProof,
       pictureUrlJPEG: convertToJPEG(`/uploads/${cartMemberProof.buktipembayaran}`),
@@ -74,7 +74,7 @@ const convertToJPEG = (url) => {
   }
 };
 
-const urljpg = 'https://hayati.fly.dev/uploads/';
+const urljpg = 'https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/uploads/';
     return (
       <div class="h-100 w-full flex flex-grow items-center justify-center bg-teal-lightest font-creato">
       <div class="rounded shadow p-6 bg-gray-50">

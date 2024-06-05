@@ -7,7 +7,7 @@ function CustomerMining({ customerName }) {
       getCust();
     }, []);
     const getCust = async () => {
-        const response = await axios.get('https://hayati.fly.dev/clusters');
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/clusters');
         setCustomerData(response.data);
         console.log(response.data)
     }

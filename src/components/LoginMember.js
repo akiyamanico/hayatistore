@@ -9,7 +9,7 @@ const LoginMember = () => {
     const [showModal, setShowModal] = useState(false);
     const handleSubmit = event => {
         event.preventDefault();
-        axios.post('https://hayati.fly.dev/loginmember', { email, password }).then(response => {
+        axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/loginmember', { email, password }).then(response => {
             document.cookie = `token=${response.data.token}; expires=Sun, 31 Dec 2023 23:59:59 GMT; path=/`;
             navigate('/');
         }).catch(error => {

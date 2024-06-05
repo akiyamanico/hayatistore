@@ -37,14 +37,14 @@ const TambahData = () => {
             formData.append('harga', harga);
             formData.append('picture', picture);
             formData.append('desc', desc);
-            await axios.post('https://hayati.fly.dev/produk_insert_picture', formData);
-            await axios.post('https://hayati.fly.dev/mining_insert', {
+            await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/produk_insert_picture', formData);
+            await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/mining_insert', {
                 id_produk: id_produk
             });
-            await axios.post('https://hayati.fly.dev/penjualan_insert', {
+            await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/penjualan_insert', {
                 id_produk: id_produk
             });
-            await axios.post('https://hayati.fly.dev/desc_insert', {
+            await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/desc_insert', {
                 id_produk: id_produk,
                 desc: desc
             });

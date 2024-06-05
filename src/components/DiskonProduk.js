@@ -19,7 +19,7 @@ const DiskonProduk = () => {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get('https://hayati.fly.dev/get-discount-produk');
+      const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/get-discount-produk');
       setProducts(response.data);
     } catch (error) {
       console.error(error);
@@ -75,7 +75,7 @@ const DiskonProduk = () => {
 
   const updateDiscount = async (idProduk, totalDiskon) => {
     try {
-      const response = await axios.post('https://hayati.fly.dev/update-discount', {
+      const response = await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/update-discount', {
         id_produk: idProduk,
         totaldiscount: totalDiskon,
       });

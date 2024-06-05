@@ -15,7 +15,7 @@ const Register = () => {
           email: email,
           password: password
         };
-        axios.post('https://hayati.fly.dev/registerusers', data)
+        axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/registerusers', data)
           .then(response => {
             setShowSuccessPopup(true);
             console.log(response);

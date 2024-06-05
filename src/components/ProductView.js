@@ -14,7 +14,7 @@ const ProductView = () => {
   useEffect(() => {
     fetchUsername();
     axios
-      .get(`https://hayati.fly.dev/produkpictureid/${id_produk}`)
+      .get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/produkpictureid/${id_produk}`)
       .then((response) => {
         // Convert the picture filenames to JPEG URLs
         const updatedProducts = response.data.map((product) => {
@@ -31,7 +31,7 @@ const ProductView = () => {
       });
 getDesc();
   }, []);
-  const urljpg = 'https://hayati.fly.dev/uploads/';
+  const urljpg = 'https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/uploads/';
   const convertToJPEG = (url) => {
     const extension = url.slice(-3); // Get the file extension
     if (extension === 'jpg' || extension === 'jpeg') {
@@ -43,7 +43,7 @@ getDesc();
   };
   const getDesc = async () => {
     axios
-    .get(`https://hayati.fly.dev/productdesc/${id_produk}`)
+    .get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/productdesc/${id_produk}`)
     .then((response) => {
       // Convert the picture filenames to JPEG URLs
       const updatedProducts = response.data.map((productdesc) => {
@@ -72,7 +72,7 @@ return { ...productdesc, pictureUrlJPEG };
       // Decode the token to extract the user ID
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
-      const userResponse = await axios.get(`https://hayati.fly.dev/usermember/${id}`);
+      const userResponse = await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/usermember/${id}`);
       const { name } = userResponse.data;
       setUsername(name);
     } catch (error) {
@@ -93,7 +93,7 @@ return { ...productdesc, pictureUrlJPEG };
       // Decode the token to extract the user ID
       const decodedToken = jwt_decode(token);
       const { id } = decodedToken;
-      await axios.post('https://hayati.fly.dev/insertDataCart', {
+      await axios.post('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/insertDataCart', {
         idcust: id,
         idproduct: id_produk,
       });

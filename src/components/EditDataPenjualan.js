@@ -21,7 +21,7 @@ const EditDataPenjualan = () => {
     const { id_produk } = useParams();
    useEffect(() => {
     const getProductById = async () => {
-        const response = await fetch(`https://hayati.fly.dev/editpenjualan/${id_produk}`);
+        const response = await fetch(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/editpenjualan/${id_produk}`);
         const data = await response.json();
       };
   getProductById();

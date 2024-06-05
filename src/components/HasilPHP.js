@@ -25,7 +25,7 @@ const HasilPHP = () => {
         getResultKurangLaku();
     }, []);
     const getProducts = async () => {
-        const response = await axios.get('https://hayati.fly.dev/produk');
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/produk');
         setProduct(response.data);
     }
     const deleteProduct = async (id_produk) => {
@@ -108,7 +108,7 @@ const HasilPHP = () => {
 
     const addDiscount = async (id_produk) => {
         try{
-            await axios.get(`https://hayati.fly.dev/adddiscount/${id_produk}`);    
+            await axios.get(`https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/adddiscount/${id_produk}`);    
         }
         catch (error) {
             console.error(error);

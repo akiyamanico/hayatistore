@@ -25,7 +25,7 @@ const Dashboard = () => {
         getResultKurangLaku();
     }, []);
     const getProducts = async () => {
-        const response = await axios.get('https://hayati.fly.dev/produk');
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/produk');
         setProduct(response.data);
     }
     const deleteProduct = async (id_produk) => {
@@ -35,21 +35,21 @@ const Dashboard = () => {
     //create componentdidmout for apijson.php
     const [progressData, setProgress] = useState([]);
     const getProgress = async () => {
-        const response = await axios.get('https://hayati.fly.dev/labelPercentage', {
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/labelPercentage', {
             withCredentials: false
         });
         setProgress(response.data);
     }
     const [resultDataLaku, setResultLaku] = useState([]);
     const getResultLaku = async () => {
-        const response = await axios.get('https://hayati.fly.dev/manybuyersdata', {
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/manybuyersdata', {
             withCredentials: false
         });
         setResultLaku(response.data);
     }
     const [resultDataKurangLaku, setResultKurangLaku] = useState([]);
     const getResultKurangLaku = async () => {
-        const response = await axios.get('https://hayati.fly.dev/fewbuyersdata', {
+        const response = await axios.get('https://kmeans-crm-backend-node-c5xdhud6vq-et.a.run.app/fewbuyersdata', {
             withCredentials: false
         });
         setResultKurangLaku(response.data);
